@@ -1,0 +1,94 @@
+package tools;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public class repaceTool {
+
+	public static void main(String[] args) {
+		
+		HashMap<String, String> replaceList = new HashMap<String, String>();
+		replaceList.put("reportImage/normal/coverpage1.png", "reportImage/compressed/normal/coverpage1.jpg");
+		replaceList.put("reportImage/normal/coverpage5.png", "reportImage/compressed/normal/coverpage5.jpg");
+		replaceList.put("reportImage/normal/coverpage.png", "reportImage/compressed/normal/page-Compressed.jpg");
+		replaceList.put("reportImage/normal/coverpageold.png", "reportImage/compressed/normal/coverpageold.jpg");
+		replaceList.put("reportImage/normal/headerleft.png", "reportImage/compressed/normal/headerleft.jpg");
+		replaceList.put("reportImage/normal/headerRight.png", "reportImage/compressed/normal/headerRight.jpg");
+		
+		replaceList.put("reportImage/Certificate.png", "reportImage/compressed/Certificate.jpg");
+		replaceList.put("reportImage/CertificateCover.png", "reportImage/compressed/CertificateCover.jpg");
+		replaceList.put("reportImage/Certi_R.png", "reportImage/compressed/Certi_R.jpg");
+		replaceList.put("reportImage/compass_report_8PA_cover_page.jpeg", "reportImage/compressed/compass_report_8PA_cover_page.jpg");
+		replaceList.put("reportImage/cover.png", "reportImage/compressed/cover.jpg");
+		replaceList.put("reportImage/compressed/cover1.jpg", "reportImage/cover1.png");
+		replaceList.put("reportImage/footerLeft.png", "reportImage/compressed/footerLeft.jpg");
+		replaceList.put("reportImage/headerRight.png", "reportImage/compressed/headerRight.png");
+		replaceList.put("reportImage/lci_CoverPage.png", "reportImage/compressed/lci_CoverPage.jpg");
+		replaceList.put("reportImage/westFirst.png", "reportImage/compressed/westFirst.jpg");
+		
+		
+		try{
+		File imageUrlFolder = new File("/home/wheebox/Desktop/jsps/");
+		File[] listOfFiles = imageUrlFolder.listFiles();
+		for (File file : listOfFiles) {
+			
+		       System.out.println(file.getName());
+		       
+
+          try{
+           FileReader fr = new FileReader(file);
+           String s;
+           try (BufferedReader br = new BufferedReader(fr)) {
+
+        	   
+        	   List<String> lines = new ArrayList<String>();
+        	   
+        	   
+                    while ((s = br.readLine()) != null) {
+                    	  
+                    	for(String key: replaceList.keySet()){
+                              s = s.replaceAll(key, replaceList.get(key));
+                              
+                                 }
+                    	
+                    	lines.add(s);
+                    	
+                    }
+                    
+                    System.out.println("lines..." + lines.size());
+                    
+                    
+                    Path fileNew = Paths.get("/home/wheebox/Desktop/jspNew/" +file.getName() );
+                    Files.write(fileNew, lines, Charset.forName("UTF-8"));
+                   
+                 
+                 }catch (Exception e) {
+
+                     System.out.println("aaa....." + e);
+				}
+           
+           
+                }catch(Exception e1){
+                        System.out.println("bbb....." + e1);
+                          }
+		       
+		   
+		}
+		//out.println(allVideos.toString());
+		}catch(Exception e2){
+		System.out.println("ccc....." + e2);
+		}
+		
+
+	}
+
+}
