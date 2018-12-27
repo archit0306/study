@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<link rel="stylesheet" href="https://www.jqueryscript.net/demo/Tree-Plugin-jQuery-jsTree/dist/themes/default/style.min.css" />
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+	<script src="https://www.jqueryscript.net/demo/Tree-Plugin-jQuery-jsTree/dist/jstree.min.js"></script>
+
+<body>
+
+<h2>Lazy loading demo</h2>
+	<div id="lazy" class="demo"></div>
+	
+	
+</body>
+
+
+<script type="text/javascript">
+
+$('#lazy').jstree({
+	'core' : {
+		'data' : {
+			"url" : "https://www.jstree.com/fiddle/?lazy",
+			"data" : function (node) {
+				return { "id" : node.id };
+			}
+		}
+	}
+});
+
+
+
+
+
+</script>
+
+</html>
+ 
