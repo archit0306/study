@@ -1,0 +1,4 @@
+var $options3 = $("#per_city > option").clone();
+	        			$('#pre_city').empty();
+	        			$('#pre_city').append($options3);
+	        			$('#pre_city').val($('#per_city').val());
